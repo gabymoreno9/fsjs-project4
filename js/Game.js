@@ -50,6 +50,8 @@ class Game{
             button.classList.add('chosen')
             this.activePhrase.showMatchedLetter(letter)
             let won = this.checkForWin()
+            let correct = new Audio('media/correct.mp3')
+            correct.play()
             if (won) {
                 this.gameOver(true)
             }
@@ -62,6 +64,8 @@ class Game{
     removeLife(){
         let heart = document.querySelector('.tries img[src="images/liveHeart.png"]')
         heart.setAttribute('src', 'images/lostHeart.png')
+        let miss = new Audio('media/oof.mp3')
+        miss.play()
         this.missed += 1
         if(this.missed == 5){
             this.gameOver(false)
@@ -83,10 +87,14 @@ class Game{
         if (wonGame){
             overlay.className = 'win'
             overlayTitle.innerHTML = "You won!"
+            let winner = new Audio('media/letsgo.mp3')
+            winner.play()
         }
         else{
             overlay.className = 'lose'
             overlayTitle.innerHTML = "You lost :("
+            let lost = new Audio('media/boom.mp3')
+            lost.play()
         }
     }
 }
